@@ -1,11 +1,9 @@
 package com.decameron.logic;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage {
 
@@ -17,26 +15,23 @@ public class HomePage {
 	 * Constructor
 	 */
 	public HomePage() {
-		System.setProperty("webdriver.chrome.marionette", "/tmp/chromedriver");
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Fabiab\\workspace\\SecondTest\\bin\\chromedriver.exe");
+		driver = new ChromeDriver();
 	}
 
-	public void validateLigthBox() throws InterruptedException{
-		WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
-		
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("eighty_close_welcome_widget_iframe")));
-		//driver.switchTo().frame(driver.findElement(By.id("eighty_close_welcome_widget_iframe")));
-		
-		/*wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".new_widget_popup_welcome a.close_position")));
-		driver.findElement(By.cssSelector(".new_widget_popup_welcome>a.close_position")).click();*/
-		
-		System.out.println("Es Visible");
+	public void executeScenario() throws InterruptedException {
+		((JavascriptExecutor)driver).executeScript("arguments[0].checked = true;", driver.findElement(By.id("tiquetesAereos")));
+		Thread.sleep(500);
+		((JavascriptExecutor)driver).executeScript("arguments[0].checked = true;", driver.findElement(By.id("tiquetesTerrestres")));
+		Thread.sleep(500);
+		((JavascriptExecutor)driver).executeScript("arguments[0].checked = true;", driver.findElement(By.id("sinTransporte")));
 	}
 	
 	/**
 	 * Abre la pagina de inicio
 	 */
 	public void openPage(){
-		driver = new ChromeDriver();
+
 		driver.get(PAGE_URL);
 	}
 	

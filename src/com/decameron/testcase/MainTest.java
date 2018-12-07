@@ -9,8 +9,8 @@ public class MainTest {
 		try {
 			HomePage home = new HomePage();
 			home.openPage();
-			home.validateLigthBox();
-			Thread.sleep(5);
+			home.executeScenario();
+			Thread.sleep(2000);
 			home.closePage();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
